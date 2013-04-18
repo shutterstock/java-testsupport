@@ -10,9 +10,9 @@
     <name>Java Test Support</name>
 
     <description>
-		Support for writing unit tests; 
-		should be added as a dependency with scope=test only
-	</description>
+        Support for writing unit tests; 
+        should be added as a dependency with scope=test only
+    </description>
 
     <properties>
         <compileSource>1.6</compileSource>
@@ -36,20 +36,44 @@
                 </excludes>
             </resource>
         </resources>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.3.1</version>
-                    <configuration>
-                        <showDeprecation>false</showDeprecation>
-                        <showWarnings>false</showWarnings>
-                        <source>${compileSource}</source>
-                        <target>${compileTarget}</target>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.1</version>
+				<configuration>
+					<showDeprecation>false</showDeprecation>
+					<showWarnings>false</showWarnings>
+					<source>${compileSource}</source>
+					<target>${compileTarget}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
     </build>
 
     <dependencies>
